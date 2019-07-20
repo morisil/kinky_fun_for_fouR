@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import processing.serial.*;
+
 // -- Audio setup begin --
 
 final boolean ENABLE_SOUND_LOOP = true;
@@ -130,9 +132,10 @@ boolean firstDraw = true;
 int effectNo;
 
 void setup() {
-  fullScreen(P2D);
+  //fullScreen(P2D);
+  
   colorMode(HSB, 360, 100, 100);
-  //size(1920, 1000, P2D);
+  size(300, 300, P2D);
   
   setUpController();
   setUpSimpleOpenNI();
@@ -255,10 +258,27 @@ void draw() {
 
   Persona persona = personae.personaInControl;
   if (persona == null) {
+    println(width);
     return;
   } else {
-    mixer.circle(persona.leftHand.x, persona.leftHand.y, 10);    
+    //mixer.ellipse(persona.leftHand.x, persona.leftHand.y, 10 , 10);  
+    mixer.ellipse(persona.head.x, persona.head.y, 10 , 10);  
+    println(width/3);
+    println(persona.head.y);
+    println(persona.head.x);
+    
+    if (persona.head.x > width/3) {
+      println("start");
+    } if (persona.head.x > width/3*2) {
+      println("midle");
+    } else {
+      println("end");
+    }
+    
+    
   }
+  
+  
 
   personae.updateParticles();
   
@@ -472,3 +492,9 @@ void keyPressed() {
     case '2': switchEffect(2); break;
   }
 }
+
+//void sendSerialMessage(char type, int duration, int id) {
+//  println(type+" "+duration+" "+id);
+//  serial.write(type+","+duration+","+id+";");
+//  delay(sleepMessage); // wait for serial
+//}
