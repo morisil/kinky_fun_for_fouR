@@ -106,7 +106,7 @@ SimpleOpenNI  context;
 float kinectWidth;
 float kinectHeight;
 float kinectScale;
-PVector kinectOffset;
+PVector kinectOffset; //<>//
 
 PGraphics mixer;
 PShader mixerShader;
@@ -134,6 +134,7 @@ void setup() {
   colorMode(HSB, 360, 100, 100);
   //size(1920, 1000, P2D);
   
+  setUpController();
   setUpSimpleOpenNI();
   setUpKinect();
   setUpGraphics();
