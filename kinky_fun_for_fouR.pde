@@ -241,7 +241,6 @@ void draw() {
   int[] userList = context.getUsers();
   if (userList.length > 0) { // only if we are tracking someone
     personae.calculateBodyPartPositions();
-    // draw here
   }  
 
   updateMotionBlurFactor();
@@ -252,6 +251,13 @@ void draw() {
   mixer.rect(0, 0, width, height);
   mixer.resetShader();
   mixer.noStroke();
+
+  Persona persona = personae.personaInControl;
+  if (persona == null) {
+    return;
+  } else {
+    mixer.circle(persona.leftHand.x, persona.leftHand.y, 10);    
+  }
 
   personae.updateParticles();
   
