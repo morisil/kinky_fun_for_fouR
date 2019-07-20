@@ -5,3 +5,11 @@ application.linux64
 application.windows32
 application.windows64
 application.macosx
+
+# idea files
+/.idea/*
+!/.idea/copyright/
+!/.idea/dictionaries/
+!/.idea/codeStyles/
+/*.iml
+
